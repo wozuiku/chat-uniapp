@@ -1,0 +1,27 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"demo_code": {
+			"description": "示例编码，相当头表ID"
+		},
+		"line_no": {
+			"description": "行号"
+		},
+		"gender": {
+			"description": "性别"
+		},
+		"line_content": {
+			"description": "内容"
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"code": {
+			"description": "功能类别编码",
+			"foreignKey": "chat-type.category"
+		},
+		"name": {
+			"description": "功能类别名称"
+		},
+		"order": {
+			"description": "排序"
+		}
+	}
+}

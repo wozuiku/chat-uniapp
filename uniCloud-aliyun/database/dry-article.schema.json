@@ -1,0 +1,39 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"article_type": {
+			"description": "article_type"
+		},
+		"title": {
+			"description": "title"
+		},
+		"author_icon": {
+			"description": "author-icon"
+		},
+		"author_name": {
+			"description": "author-name"
+		},
+		"author_brief": {
+			"description": "author-brief"
+		},
+		"content_image": {
+			"description": "content_image"
+		},
+		"content_html": {
+			"description": "content_html"
+		},
+		"order": {
+			"description": "order"
+		}
+	}
+}

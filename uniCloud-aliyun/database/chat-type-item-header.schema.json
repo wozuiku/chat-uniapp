@@ -1,0 +1,28 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"type_code": {
+			"description": "类型编码"
+		},
+		"demo_code": {
+			"description": "示例编码",
+			"foreignKey": "chat-type-item-line.demo_code" // 使用foreignKey表示，此字段关联book表的_id。
+		},
+		"demo_name": {
+			"description": "示例名称"
+		},
+		"order": {
+			"description": "顺序"
+		}
+	}
+}

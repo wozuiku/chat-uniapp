@@ -1,0 +1,25 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"code": {
+			"description": "干货编码",
+			"foreignKey": "dry-article.article_type" // 使用foreignKey表示，此字段关联book表的_id。
+		},
+		"name": {
+			"description": "干货名称"
+		},
+		"order": {
+			"description": "顺序"
+		}
+	}
+}

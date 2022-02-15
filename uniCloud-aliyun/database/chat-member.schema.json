@@ -1,0 +1,42 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"memberId": {
+			"description": "memberId"
+		},
+		"nickName": {
+			"description": "昵称"
+		},
+		"memberLevel": {
+			"description": "memberLevel"
+		},
+		"gender": {
+			"description": "性别"
+		},
+		"avatarUrl": {
+			"description": "头像"
+		},
+		"validDate": {
+			"description": "validDate"
+		},
+		"code": {
+			"description": "code"
+		},
+		"openid": {
+			"description": "openid"
+		},
+		"session_key": {
+			"description": "session_key"
+		}
+	}
+}
