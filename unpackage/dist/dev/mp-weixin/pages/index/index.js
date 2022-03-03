@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uSwiper: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uview-ui/components/u-swiper/u-swiper */ "uni_modules/uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swiper/u-swiper.vue */ 321))
+      return __webpack_require__.e(/*! import() | uni_modules/uview-ui/components/u-swiper/u-swiper */ "uni_modules/uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swiper/u-swiper.vue */ 322))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */ "uni_modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 328))
+      return __webpack_require__.e(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */ "uni_modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 329))
     }
   }
 } catch (e) {
