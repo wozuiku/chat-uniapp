@@ -1,53 +1,83 @@
 {
-  "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": false
-  },
-  "compileType": "miniprogram",
-  "libVersion": "",
-  "appid": "wx1661376701ddbb9a",
-  "projectname": "chat",
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
+    "description": "项目配置文件。",
+    "packOptions": {
+        "ignore": []
     },
-    "conversation": {
-      "current": -1,
-      "list": []
+    "setting": {
+        "urlCheck": false,
+        "es6": false,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": false,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "useIsolateContext": true,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "disableUseStrict": false,
+        "showES6CompileOption": false,
+        "useCompilerPlugins": false,
+        "ignoreUploadUnusedFiles": true,
+        "minifyWXML": true
     },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": 0,
-          "pathName": "pages/list/detail"
+    "compileType": "miniprogram",
+    "libVersion": "",
+    "appid": "wx1661376701ddbb9a",
+    "projectname": "chat",
+    "condition": {
+        "search": {
+            "list": []
         },
-        {
-          "id": 1,
-          "pathName": "pages/list/list"
+        "conversation": {
+            "list": []
         },
-        {
-          "id": 2,
-          "pathName": "pages/ucenter/login-page/index/index"
+        "game": {
+            "list": []
         },
-        {
-          "id": 3,
-          "pathName": "pages/ucenter/userinfo/userinfo"
-        },
-        {
-          "id": 4,
-          "pathName": "pages/ucenter/settings/settings"
+        "miniprogram": {
+            "list": [
+                {
+                    "id": 0,
+                    "pathName": "pages/list/detail"
+                },
+                {
+                    "id": 1,
+                    "pathName": "pages/list/list"
+                },
+                {
+                    "id": 2,
+                    "pathName": "pages/ucenter/login-page/index/index"
+                },
+                {
+                    "id": 3,
+                    "pathName": "pages/ucenter/userinfo/userinfo"
+                },
+                {
+                    "id": 4,
+                    "pathName": "pages/ucenter/settings/settings"
+                }
+            ]
         }
-      ],
-      "current": 1
     }
-  }
 }

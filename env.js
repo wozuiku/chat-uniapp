@@ -8,3 +8,5 @@ export const MAP_KEY = ''; //高德地图开发者Web服务key,逆坐标解析
 export const APP_ID = 'wx7ac278a5d3099db3'
 
 export const APP_OWNER = 'malo'
+export const APPID = 'wx1661376701ddbb9a'
+export const SECRET = '6e2daeeb7d96e93729263fbd5565e956'

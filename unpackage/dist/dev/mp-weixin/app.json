@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/index/dry",
     "pages/index/my",
+    "pages/login/login",
     "pages/dry/article",
     "pages/dry/addArticle",
     "pages/chat/type/type",

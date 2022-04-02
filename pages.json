@@ -36,6 +36,16 @@
 		},
 		
 		{
+		    "path" : "pages/login/login",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "授权登录",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		
+		{
 		    "path" : "pages/dry/article",
 		    "style" :                                                                                    
 		    {

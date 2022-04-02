@@ -7,6 +7,8 @@ exports.main = async (event, context) => {
 	//event为客户端上传的参数
 	console.log('event : ', event)
 	
+	let obj = {}
+	
 	const code = event
 	
 	const URL =
@@ -18,7 +20,10 @@ exports.main = async (event, context) => {
 	
 	const res = await uniCloud.httpclient.request(URL,requestOptions)
 	
+	obj.code = event
+	obj.res = res
+	
 	
 	//返回数据给客户端
-	return res
+	return obj
 };
