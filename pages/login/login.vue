@@ -41,7 +41,6 @@
 
 		.line2 {
 			padding-top: 20rpx;
-
 			.logo-text {
 				font-size: 36rpx;
 				font-weight: 600;
