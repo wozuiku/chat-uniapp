@@ -37,7 +37,7 @@ export default async function() {
 						})
 					}else{
 						let member = memberList[0]
-						uni.setStorageSync('memberInfo', member)
+						uni.setStorageSync('userInfo', member)
 					}
 				}
 				
