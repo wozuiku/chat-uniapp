@@ -1,12 +1,3 @@
 {
-	"广告位id": "密钥",
-	"mp-weixin": {
-		"oauth": {
-			"weixin": {
-				"appid": "wx1661376701ddbb9a",
-				"appsecret": "6e2daeeb7d96e93729263fbd5565e956"
-			}
-		}
-
-	}
+	"广告位id": "密钥"
 }

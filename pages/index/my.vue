@@ -1,8 +1,6 @@
 <template>
 	<view class="my-wrap">
 		<view class="user-info">
-
-
 			<view class="user-image-box">
 				<view class="user-image">
 					<u-avatar mode="circle" size="160" :src="userInfo.avatarUrl"></u-avatar>
@@ -57,7 +55,7 @@
 
 					</view>
 				</view>
-				<view class="cu-item arrow">
+				<view class="cu-item arrow" @tap="jumpSuggestion">
 					<view class="content">
 						<text class="cuIcon-activity text-grey"></text>
 						<text class="text-grey">投诉建议</text>
@@ -84,14 +82,14 @@
 	import {
 		APP_OWNER
 	} from '@/env'
-	
+
 	const db = uniCloud.database();
 	const dbCmd = db.command;
 
 	export default {
 		data() {
 			return {
-				
+
 				userInfo: {},
 
 				validDate: '',
@@ -103,24 +101,16 @@
 			this.init()
 		},
 
+		onShow() {
+			
+			this.getWechatNumber()
+
+		},
+
 		methods: {
 			init() {
-				
+
 				this.userInfo = uni.getStorageSync('userInfo')
-
-
-				// 使用uni-clientDB
-				db.collection('chat-config')
-					.where('config_type=="weixin" && item_code=="' + APP_OWNER + '" && enable=="Y"')
-					.get()
-					.then((res) => {
-						this.wechatNumber = res.result.data[0].item_content
-						console.log('chat-config:', res)
-						console.log('wechatNumber:', this.wechatNumber)
-					}).catch((err) => {
-						console.log(err.code); // 打印错误码
-						console.log(err.message); // 打印错误内容
-					})
 
 				//今天
 				let currentData = new Date()
@@ -129,6 +119,27 @@
 				this.validDate = this.$formatter.timeFormat(nextMonthDate, 'yyyy-mm-dd')
 				console.log('validDate:', this.validDate);
 
+			},
+
+			async getWechatNumber() {
+				// // 使用uni-clientDB
+				// db.collection('chat-config')
+				// 	.where('config_type=="weixin" && item_code=="' + APP_OWNER + '" && enable=="Y"')
+				// 	.get()
+				// 	.then((res) => {
+				// 		this.wechatNumber = res.result.data[0].item_content
+				// 		console.log('chat-config:', res)
+				// 		console.log('wechatNumber:', this.wechatNumber)
+				// 	}).catch((err) => {
+				// 		console.log(err.code); // 打印错误码
+				// 		console.log(err.message); // 打印错误内容
+				// 	})
+
+				let res = await db.collection('chat-config')
+					.where('config_type=="weixin" && item_code=="' + APP_OWNER + '" && enable=="Y"')
+					.get()
+					
+				this.wechatNumber = res.result.data[0].item_content
 			},
 
 			copy() {
@@ -141,6 +152,12 @@
 						});
 					}
 				});
+			},
+			
+			jumpSuggestion(){
+				uni.navigateTo({
+					url: "/pages/my/suggestion/suggestion"
+				})
 			}
 		}
 	}

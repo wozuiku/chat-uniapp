@@ -46,7 +46,7 @@
 					</view>
 				</view>
 			</unicloud-db> -->
-			
+
 			<view v-for="cate in chatList">
 				<view class="cu-bar bg-white solid-bottom">
 					<view class='action'>
@@ -55,7 +55,8 @@
 				</view>
 				<view class='padding-sm flex flex-wrap bg-white'>
 					<view class="padding-xs" v-for="(item,index) in cate.code" :key="index">
-						<view class='cu-tag line-orange round' style="color: #F889AB;" @click = "show_type(item)">{{item.name}}</view>
+						<view class='cu-tag line-orange round' style="color: #F889AB;" @click="show_type(item)">
+							{{item.name}}</view>
 					</view>
 				</view>
 			</view>
@@ -64,6 +65,8 @@
 </template>
 
 <script>
+	import userLogin from '@/common/userLogin.js';
+
 	export default {
 		data() {
 			return {
@@ -160,7 +163,7 @@
 						color: '#ffffff'
 					},
 				],
-				chatList:[]
+				chatList: []
 			}
 		},
 
@@ -168,8 +171,12 @@
 			this.init()
 		},
 
+		onShow() {
+			userLogin()
+		},
+
 		methods: {
-			init(){
+			init() {
 				// 客户端联表查询
 				const db = uniCloud.database()
 				db.collection('chat-cate,chat-type')
@@ -178,24 +185,24 @@
 					.then(res => {
 						this.chatList = res.result.data
 						console.log(this.chatList)
-					}).catch (err => {
-					console.error(err)
-				})
+					}).catch(err => {
+						console.error(err)
+					})
 			},
 
-			jump(){
+			jump() {
 				console.log('jump');
 				uni.navigateTo({
 					url: '/pages/chat/search/search'
 				});
 			},
-			
-			show_type(item){
+
+			show_type(item) {
 				console.log(item);
 				uni.navigateTo({
-					url: '/pages/chat/type/type?code='+item.code + '&name='+item.name
+					url: '/pages/chat/type/type?code=' + item.code + '&name=' + item.name
 				})
-				
+
 			}
 		}
 	}
@@ -204,14 +211,17 @@
 <style lang="scss" scoped>
 	.ad {
 		padding: 12rpx;
+
 		.ad-title {
 			display: flex;
 			justify-content: space-between;
+
 			.ad-title-left {
 				font-weight: 900;
 				color: #5D5D5D;
 				font-size: 30rpx;
 			}
+
 			.ad-title-right {
 				color: #C9C9CB;
 				font-size: 26rpx;
@@ -228,7 +238,7 @@
 		flex-direction: column;
 		width: 100%;
 		height: 140rpx;
-		
+
 		.search-box {
 			height: 160rpx;
 			padding-left: 32rpx;
@@ -277,6 +287,7 @@
 				flex-wrap: wrap;
 				align-items: center;
 			}
+
 			//padding: 20rpx;
 		}
 	}

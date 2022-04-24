@@ -8,41 +8,41 @@ export default async function() {
 
 	uni.login({
 		//provider: 'weixin',
-		success: function(loginRes) {
+		success: async function(loginRes) {
 			console.log('loginRes:', loginRes);
 			let js_code = loginRes.code
 			console.log('js_code:', js_code);
 			
-			uni.request({
-				url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx1661376701ddbb9a&secret=6e2daeeb7d96e93729263fbd5565e956&js_code='+js_code,
-				header:{
-					"Content-Type": "application/x-www-form-urlencoded"
-				},
-				method: "post",
-				success: async function(weixinRes){
-					console.log('weixinRes:', weixinRes);
-					uni.setStorageSync('openid', weixinRes.data.openid)
-					uni.setStorageSync('session_key', weixinRes.data.session_key)
-					
-					let memberList = await getMember(weixinRes.data.openid)
-					let memberCount = memberList.length
-					console.log('memberCount2:', memberCount);
-					
-					//如果数据库不存在该用户openid，说明是第一次登录
-					if(memberCount == 0){
-						console.log('不存在');
-						//跳转到授权登录页面
-						uni.navigateTo({
-							url: '/pages/login/login'
-						})
-					}else{
-						let member = memberList[0]
-						uni.setStorageSync('userInfo', member)
-					}
+			let callFuncRes = await uniCloud.callFunction({
+				name: 'user-login',
+				data: {
+					js_code: js_code
 				}
-				
 			})
 			
+			console.log('callFuncRes:', callFuncRes);
+			
+			let openid = callFuncRes.result.data.openid
+			let session_key = callFuncRes.result.data.session_key
+			
+			uni.setStorageSync('openid', openid)
+			uni.setStorageSync('session_key', session_key)
+			
+			let memberList = await getMember(openid)
+			let memberCount = memberList.length
+			console.log('memberCount:', memberCount);
+			
+			//如果数据库不存在该用户openid，说明是第一次登录
+			if(memberCount == 0){
+				console.log('不存在');
+				//跳转到授权登录页面
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
+			}else{
+				let member = memberList[0]
+				uni.setStorageSync('userInfo', member)
+			}
 			
 		}
 	});

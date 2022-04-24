@@ -2,7 +2,7 @@
 	import initApp from '@/common/appInit.js';
 	import openApp from '@/common/openApp.js';
 	import checkIsAgree from '@/pages/uni-agree/utils/uni-agree.js';
-	import userLogin from '@/common/userLogin.js';
+	//import userLogin from '@/common/userLogin.js';
 	
 	export default {
 		globalData: {
@@ -49,7 +49,7 @@
 		onShow: function() {
 			console.log('App Show')
 			// #ifdef MP-WEIXIN
-			userLogin();
+			//userLogin();
 			// #endif
 		},
 		onHide: function() {

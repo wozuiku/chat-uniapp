@@ -38,7 +38,6 @@
 					openid: '',
 				}
 			}
-
 		},
 
 
@@ -63,9 +62,6 @@
 									this.userInfo.memberLevel = '普通会员'
 									this.userInfo.openid = uni.getStorageSync('openid')
 									
-									
-
-
 									await this.addMember()
 									uni.setStorageSync('userInfo', this.userInfo)
 
@@ -129,29 +125,16 @@
 				})
 			},
 
-			getOpenID(code) {
-
-				return new Promise((resolve, reject) => {
-					uni.request({
-						url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx1661376701ddbb9a&secret=6e2daeeb7d96e93729263fbd5565e956&js_code=' +
-							code,
-						header: {
-							"Content-Type": "application/x-www-form-urlencoded"
-						},
-						method: "post",
-						success: (e) => {
-							console.log('getOpenID e:', e);
-							resolve(e.data)
-						},
-						fail: (err) => {
-							reject(new Error("获取openid失败"))
-						}
-
-					})
+			async getOpenID(code) {
+				let callFuncRes = await uniCloud.callFunction({
+					name: 'user-login',
+					data: {
+						js_code: js_code
+					}
 				})
-
-
-
+				let openid = callFuncRes.result.data.openid
+				
+				return openid
 			},
 
 			getUserProfile() {
