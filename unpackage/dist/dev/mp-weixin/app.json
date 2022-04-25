@@ -5,7 +5,6 @@
     "pages/index/my",
     "pages/login/login",
     "pages/dry/article",
-    "pages/dry/addArticle",
     "pages/my/suggestion/suggestion",
     "pages/chat/type/type",
     "pages/chat/search/search",
@@ -73,6 +72,5 @@
       "desc": "演示在onShow生命周期获取地理位置"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

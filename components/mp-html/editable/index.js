@@ -1,8 +1,8 @@
 /**
  * @fileoverview editable 插件
  */
-const config = require('./config')
-const Parser = require('../parser')
+import config from './config'
+import Parser from '../parser'
 
 function Editable (vm) {
   this.vm = vm
@@ -526,4 +526,4 @@ Editable.prototype.onParse = function (node) {
   }
 }
 
-module.exports = Editable
+export default Editable

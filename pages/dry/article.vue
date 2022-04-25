@@ -75,6 +75,9 @@
 		
 		onLoad(options) {
 			this.articleId = options.articleId
+			
+			console.log('onLoad this.articleId:', this.articleId);
+			
 			this.init()
 		},
 
@@ -90,8 +93,9 @@
 						this.articleList = res.result.data
 						this.title = this.articleList[0].title
 						this.author_name = this.articleList[0].author_name
-						this.author_brief = this.articleList[0].author_brief
+						//this.author_brief = this.articleList[0].author_brief
 						this.content_html = decodeURIComponent(this.articleList[0].content_html)
+						console.log(this.content_html);
 					}).catch(err => {
 						console.error(err)
 					})
@@ -102,6 +106,7 @@
 				  .get()
 				  .then((res)=>{
 					  this.wechatNumber = res.result.data[0].item_content
+					  this.author_brief = '咨询请加微信：' + this.wechatNumber
 				  }).catch((err)=>{
 				    console.log(err.code); // 打印错误码
 				    console.log(err.message); // 打印错误内容

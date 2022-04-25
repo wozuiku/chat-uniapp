@@ -55,14 +55,6 @@
 		},
 		
 		{
-		    "path" : "pages/dry/addArticle",
-		    "style" :                                                                                    
-		    {
-		        "enablePullDownRefresh": false
-		    }
-		},
-		
-		{
 		    "path" : "pages/my/suggestion/suggestion",
 		    "style" :                                                                                    
 		    {

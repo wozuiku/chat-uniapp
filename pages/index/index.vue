@@ -2,7 +2,7 @@
 	<view>
 		<view class="ad">
 			<view class="ad-swiper">
-				<u-swiper :list="adList"></u-swiper>
+				<u-swiper :list="adList" @click="click"></u-swiper>
 			</view>
 		</view>
 		<view class="search">
@@ -56,7 +56,8 @@
 				<view class='padding-sm flex flex-wrap bg-white'>
 					<view class="padding-xs" v-for="(item,index) in cate.code" :key="index">
 						<view class='cu-tag line-orange round' style="color: #F889AB;" @click="show_type(item)">
-							{{item.name}}</view>
+							{{item.name}}
+						</view>
 					</view>
 				</view>
 			</view>
@@ -66,24 +67,27 @@
 
 <script>
 	import userLogin from '@/common/userLogin.js';
+	
+	const db = uniCloud.database();
+	const dbCmd = db.command;
 
 	export default {
 		data() {
 			return {
 				adList: [{
 						id: 0,
-						image: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
-						title: '昨夜星辰昨夜风，画楼西畔桂堂东'
+						image: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/66dd8d39-31ee-42ad-b550-2e41011e047c.png',
+						title: '如何追女孩'
 					},
 					{
 						id: 1,
-						image: 'https://cdn.uviewui.com/uview/swiper/2.jpg',
-						title: '身无彩凤双飞翼，心有灵犀一点通'
+						image: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/be4c47ae-0d94-4d32-b9f7-57dab27faf5a.png',
+						title: '聊天训练营'
 					},
 					{
 						id: 2,
-						image: 'https://cdn.uviewui.com/uview/swiper/3.jpg',
-						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
+						image: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/94e7af8a-185e-4bd8-a908-b7abd1c4ac92.jpg',
+						title: '追女生套路'
 					}
 				],
 
@@ -188,6 +192,52 @@
 					}).catch(err => {
 						console.error(err)
 					})
+			},
+
+			async click(index) {
+				console.log('click:', index);
+				
+				let articleId = ''
+
+				if (index == 0) {
+					articleId = await this.getArticleId('如何追女生')
+					
+				} else if (index == 1) {
+					articleId = await this.getArticleId('聊天训练营')
+
+				} else if (index == 2) {
+					articleId = await this.getArticleId('追女生套路')
+				}
+				
+				console.log('articleId:', articleId);
+				
+				this.showArticle(articleId)
+			},
+
+
+			async getArticleId(articleTitle) {
+				let res = await db.collection('dry-article')
+					.where('article_type == "首页广告" && title == "' + articleTitle + '"')
+					.get()
+					
+				console.log('getArticleId res:', res);
+				
+				let articleId = res.result.data[0]._id
+				
+				console.log('getArticleId articleId:', articleId);
+				
+				return articleId
+				
+
+			},
+
+
+			showArticle(articleId) {
+
+				uni.navigateTo({
+					url: "/pages/dry/article?articleId=" + articleId
+				})
+
 			},
 
 			jump() {
