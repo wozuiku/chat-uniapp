@@ -55,6 +55,26 @@
 		},
 		
 		{
+		    "path" : "pages/my/activation/activation",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "填写邀请码",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		
+		{
+		    "path" : "pages/my/invitation/invitation",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "邀请好友赚vip",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		
+		{
 		    "path" : "pages/my/suggestion/suggestion",
 		    "style" :                                                                                    
 		    {

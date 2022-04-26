@@ -52,7 +52,7 @@
 </template>
 
 <script>
-	import mpHtml from '@/components/mp-html/mp-html'
+	
 	import {
 		APP_OWNER
 	} from '@/env'
@@ -106,7 +106,7 @@
 				  .get()
 				  .then((res)=>{
 					  this.wechatNumber = res.result.data[0].item_content
-					  this.author_brief = '咨询请加微信：' + this.wechatNumber
+					  this.author_brief = '领取资料请加微信：' + this.wechatNumber
 				  }).catch((err)=>{
 				    console.log(err.code); // 打印错误码
 				    console.log(err.message); // 打印错误内容

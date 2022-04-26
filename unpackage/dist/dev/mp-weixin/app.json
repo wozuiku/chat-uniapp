@@ -5,6 +5,8 @@
     "pages/index/my",
     "pages/login/login",
     "pages/dry/article",
+    "pages/my/activation/activation",
+    "pages/my/invitation/invitation",
     "pages/my/suggestion/suggestion",
     "pages/chat/type/type",
     "pages/chat/search/search",

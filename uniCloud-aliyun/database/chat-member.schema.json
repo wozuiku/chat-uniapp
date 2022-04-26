@@ -27,10 +27,7 @@
 			"description": "头像"
 		},
 		"validDate": {
-			"description": "validDate"
-		},
-		"code": {
-			"description": "code"
+			"description": "有效期至"
 		},
 		"openid": {
 			"description": "openid"

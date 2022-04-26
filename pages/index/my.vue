@@ -22,7 +22,7 @@
 				</view>
 				<view class="valid-date">
 					<view class="valid-date-label">有效期至：</view>
-					<view class="valid-date-value">{{validDate}}</view>
+					<view class="valid-date-value">{{userInfo.validDate}}</view>
 				</view>
 			</view>
 
@@ -32,7 +32,14 @@
 
 		<view class="func-area">
 			<view class="cu-list menu">
-				<view class="cu-item arrow">
+				<view class="cu-item arrow" @tap="jumpActivation">
+					<view class="content">
+						<text class="cuIcon-crown text-grey"></text>
+						<text class="text-grey">填写激活码</text>
+					</view>
+				</view>
+				
+				<view class="cu-item arrow" @tap="jumpInvitation">
 					<view class="content">
 						<text class="cuIcon-share text-grey"></text>
 						<text class="text-grey">邀请好友赚vip</text>
@@ -102,7 +109,7 @@
 		},
 
 		onShow() {
-			
+			this.getValidDate()
 			this.getWechatNumber()
 
 		},
@@ -111,6 +118,8 @@
 			init() {
 
 				this.userInfo = uni.getStorageSync('userInfo')
+				
+				console.log('this.userInfo:', this.userInfo);
 
 				//今天
 				let currentData = new Date()
@@ -120,21 +129,17 @@
 				console.log('validDate:', this.validDate);
 
 			},
+			
+			async getValidDate() {
+				let res = await db.collection('chat-member')
+					.where('_id=="' + this.userInfo._id + '"')
+					.get()
+					
+				this.userInfo.validDate = res.result.data[0].validDate
+			},
 
 			async getWechatNumber() {
-				// // 使用uni-clientDB
-				// db.collection('chat-config')
-				// 	.where('config_type=="weixin" && item_code=="' + APP_OWNER + '" && enable=="Y"')
-				// 	.get()
-				// 	.then((res) => {
-				// 		this.wechatNumber = res.result.data[0].item_content
-				// 		console.log('chat-config:', res)
-				// 		console.log('wechatNumber:', this.wechatNumber)
-				// 	}).catch((err) => {
-				// 		console.log(err.code); // 打印错误码
-				// 		console.log(err.message); // 打印错误内容
-				// 	})
-
+				
 				let res = await db.collection('chat-config')
 					.where('config_type=="weixin" && item_code=="' + APP_OWNER + '" && enable=="Y"')
 					.get()
@@ -152,6 +157,18 @@
 						});
 					}
 				});
+			},
+			
+			jumpActivation(){
+				uni.navigateTo({
+					url: "/pages/my/activation/activation"
+				})
+			},
+			
+			jumpInvitation(){
+				uni.navigateTo({
+					url: "/pages/my/invitation/invitation"
+				})
 			},
 			
 			jumpSuggestion(){

@@ -35,7 +35,17 @@
 					nickName: '',
 					gender: '',
 					avatarUrl: '',
+					validDate: '',
 					openid: '',
+				},
+				
+				invitationInfo: {
+					userId: '',
+					openId: '',
+					invitationCode: '',
+					invitationCount: 0,
+					invitationCodeStatus: 'Y',
+					invitationCodeType: 'MEMBER' //MEMBER：普通 ADMIN：管理员
 				}
 			}
 		},
@@ -53,17 +63,28 @@
 								desc: "获取你的昵称、头像、地区及性别",
 								success: async (res) => {
 									console.log(res);
-
+									//用户信息
 									this.userInfo.nickName = res.userInfo.nickName
 									this.userInfo.avatarUrl = res.userInfo.avatarUrl
 									this.userInfo.gender = res.userInfo.gender
 
 									this.userInfo.memberId = await this.getMemberId()
 									this.userInfo.memberLevel = '普通会员'
+									this.userInfo.validDate = this.$formatter.timeFormat(new Date(), 'yyyy-mm-dd')
 									this.userInfo.openid = uni.getStorageSync('openid')
 									
 									await this.addMember()
 									uni.setStorageSync('userInfo', this.userInfo)
+									
+									//生成邀请码
+									this.invitationInfo.userId = await this.getUserId(this.userInfo.openid)
+									this.invitationInfo.openId = this.userInfo.openid
+									this.invitationInfo.invitationCode = await this.getInvitationCode()
+									
+									console.log('this.invitationInfo:', this.invitationInfo);
+									
+									await this.addActivation()
+									uni.setStorageSync('invitationInfo', this.invitationInfo)
 
 									uni.switchTab({
 										url: '/pages/index/index'
@@ -109,6 +130,44 @@
 			async addMember() {
 				console.log('addMember userInfo:', this.userInfo);
 				await db.collection('chat-member').add(this.userInfo)
+			},
+			
+			async getUserId(openid) {
+				
+				let res = await db.collection('chat-member')
+					.where('openid=="' + openid + '"')
+					.get()
+					
+				console.log('getUserId res:', res);
+				let userId = res.result.data[0]._id
+				
+				return userId
+			},
+			
+			async getInvitationCode() {
+				
+				let res = await db.collection('chat-member-activation')
+					.field('max(invitationCode) as maxInvitationCode')
+					.get()
+					
+				console.log('getInvitationCode res:', res);
+				let dbMaxInvitationCode, invitationCode
+				if(res.result.data.length > 0){
+					dbMaxInvitationCode = res.result.data[0].maxInvitationCode
+					invitationCode = parseInt(dbMaxInvitationCode) + 1
+				}else{
+					invitationCode = '800001'
+				}
+				
+			    console.log('getInvitationCode invitationCode:', invitationCode);
+				
+				return invitationCode
+			},
+			
+			//新增用户时候，生成邀请码
+			async addActivation() {
+				console.log('addActivation userInfo:', this.invitationInfo);
+				await db.collection('chat-member-activation').add(this.invitationInfo)
 			},
 
 			getCode() {
