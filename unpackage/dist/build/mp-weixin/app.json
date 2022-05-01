@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/dry",
+    "pages/index/my",
+    "pages/login/login"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/dry",
+      "pages": [
+        "article"
+      ]
+    },
+    {
+      "root": "pages/chat",
+      "pages": [
+        "type/type",
+        "search/search"
+      ]
+    },
+    {
+      "root": "pages/my",
+      "pages": [
+        "activation/activation",
+        "invitation/invitation",
+        "suggestion/suggestion"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-starter",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F8F8F8",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#30BEB8",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/tabbar/index.png",
+        "selectedIconPath": "static/images/tabbar/index_active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/dry",
+        "iconPath": "static/images/tabbar/func.png",
+        "selectedIconPath": "static/images/tabbar/func_active.png",
+        "text": "干货"
+      },
+      {
+        "pagePath": "pages/index/my",
+        "iconPath": "static/images/tabbar/user.png",
+        "selectedIconPath": "static/images/tabbar/user_active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "betterScopedSlots": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "演示在onShow生命周期获取地理位置"
+    }
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
+}

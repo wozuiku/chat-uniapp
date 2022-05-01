@@ -85,5 +85,8 @@
 	"devDependencies": {
 		"node-sass": "^7.0.1",
 		"sass-loader": "^12.4.0"
+	},
+	"dependencies": {
+		"vconsole": "^3.14.6"
 	}
 }

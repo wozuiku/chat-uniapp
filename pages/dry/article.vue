@@ -4,7 +4,7 @@
 		
 		<view class="author">
 			<view class="author-icon-box">
-				<u-avatar class="author-icon" src="/static/images/index/author.jpeg" mode="circle" size = 68></u-avatar>
+				<u-avatar class="author-icon" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/d85f5970-76e2-495b-a692-162b0d927819.jpeg" mode="circle" size = 68></u-avatar>
 			</view>
 			
 			<view class="author-name-box">

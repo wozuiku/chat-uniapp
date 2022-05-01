@@ -13,9 +13,9 @@
 				<view class="type-item">
 					<view class="item-line" v-for="(item1, index1) in item.demo_code" :key="index1">
 						<view class="line-image">
-							<image class="user-icon-m" v-if="item1.gender == 'M'" src="/static/images/type/boy.png">
+							<image class="user-icon-m" v-if="item1.gender == 'M'" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/4088136a-74da-4a61-abf2-0ef7b2eabb80.png">
 							</image>
-							<image class="user-icon-f" v-if="item1.gender == 'F'" src="/static/images/type/girl.png">
+							<image class="user-icon-f" v-if="item1.gender == 'F'" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/a5c669a2-88a4-4e74-b64a-179612c681dd.png">
 							</image>
 						</view>
 						<view class="line-content" @longpress="longPress(item1.line_content)">

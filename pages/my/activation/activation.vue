@@ -3,7 +3,7 @@
 		<form>
 			<view class="cu-form-group margin-top">
 				<view class="title">激活码</view>
-				<input placeholder="请输入激活码" name="input" v-model="activationCode"></input>
+				<input placeholder="输入4位激活码" name="input" v-model="activationCode"></input>
 				<button class='cu-btn bg-orange activation-btn' @tap="activation">立即激活</button>
 			</view>
 

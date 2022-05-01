@@ -145,7 +145,6 @@
 			},
 			
 			async getInvitationCode() {
-				
 				let res = await db.collection('chat-member-activation')
 					.field('max(invitationCode) as maxInvitationCode')
 					.get()
@@ -156,7 +155,7 @@
 					dbMaxInvitationCode = res.result.data[0].maxInvitationCode
 					invitationCode = parseInt(dbMaxInvitationCode) + 1
 				}else{
-					invitationCode = '800001'
+					invitationCode = '8001'
 				}
 				
 			    console.log('getInvitationCode invitationCode:', invitationCode);

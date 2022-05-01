@@ -30,7 +30,7 @@
 					<view class="cu-chat bg-white">
 						<view class="cu-item ">
 							<view class="cu-avatar radius"
-								style="background-image:url(../../static/images/search/girl.png); background-color: #FFF;">
+								style="background-image:url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/a1129a6b-e2ee-4d8d-8a2e-780a23785f76.png); background-color: #FFF;">
 							</view>
 							<view class="main">
 								<view class="content shadow" style="background-color: #F889AB; color: #FFF;">
@@ -46,7 +46,7 @@
 								</view>
 							</view>
 							<view class="cu-avatar radius"
-								style="background-image:url(../../static/images/search/boy.png); background-color: #FFF;">
+								style="background-image:url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/acecaa2b-1bed-4797-baf7-c0865366a5aa.png); background-color: #FFF;">
 							</view>
 						</view>
 					</view>

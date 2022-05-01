@@ -5,7 +5,6 @@ import uView from '@/uni_modules/uview-ui'
 import formatter from '@/utils/formatter'
 import htmlUtil from '@/utils/htmlUtil.js'
 
-
 // #ifndef VUE3
 import Vue from 'vue'
 App.mpType = 'app'
@@ -21,6 +20,9 @@ Vue.use(uView);
 // 引入uView对小程序分享的mixin封装
 let mpShare = require('uni_modules/uview-ui/libs/mixin/mpShare.js');
 Vue.mixin(mpShare);
+
+//import vConsole from 'vconsole' // 引入vconsole
+//Vue.prototype.$vConsole = new vConsole() // 使用vconsole
 
 const app = new Vue({
 	i18n,

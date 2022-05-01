@@ -171,7 +171,8 @@
             "scope.userLocation" : {
                 "desc" : "演示在onShow生命周期获取地理位置"
             }
-        }
+        },
+        "lazyCodeLoading" : "requiredComponents"
     },
     "mp-alipay" : {
         "usingComponents" : true
