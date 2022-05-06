@@ -1,5 +1,10 @@
 <template>
 	<view class="article-wrap">
+		<view class="load-progress" :class="loadProgress!=0?'show':'hide'" :style="[{top:CustomBar+'px'}]">
+			<view class="load-progress-bar bg-green" :style="[{transform: 'translate3d(-' + (100-loadProgress) + '%, 0px, 0px)'}]"></view>
+			<view class="load-progress-spinner text-green"></view>
+		</view>
+		
 		<view class="title">{{title}}</view>
 		
 		<view class="author">
@@ -60,6 +65,9 @@
 	export default {
 		data() {
 			return {
+				loadModal: false,
+				CustomBar: this.CustomBar,
+				loadProgress: 0,
 				articleId: '',
 				articleList:'',
 				
@@ -83,6 +91,9 @@
 
 		methods: {
 			init() {
+				
+				this.loadArticle()
+				
 				// 客户端联表查询
 				const db = uniCloud.database()
 				db.collection('dry-article')
@@ -96,6 +107,8 @@
 						//this.author_brief = this.articleList[0].author_brief
 						this.content_html = decodeURIComponent(this.articleList[0].content_html)
 						console.log(this.content_html);
+						//this.loadModal = false
+						this.loadArticle();
 					}).catch(err => {
 						console.error(err)
 					})
@@ -111,6 +124,14 @@
 				    console.log(err.code); // 打印错误码
 				    console.log(err.message); // 打印错误内容
 				  })
+			},
+			
+			loadArticle(e) {
+				this.loadProgress = this.loadProgress + 50;
+				if (this.loadProgress < 100) {
+				} else {
+					this.loadProgress = 0;
+				}
 			},
 			
 			showWechatModal(){
