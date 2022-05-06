@@ -10,23 +10,23 @@
 				<view class="suggestion-content">
 					<view class="type-title">类型</view>
 					<view class="type-tag">
-						<view class="tag-item cu-tag">功能异常</view>
-						<view class="tag-item cu-tag">产品体验</view>
-						<view class="tag-item cu-tag">交易问题</view>
-						<view class="tag-item cu-tag">其他</view>
+						<view class="tag-item cu-tag" @tap="select_1" :style="tag_style_1">内容功能</view>
+						<view class="tag-item cu-tag" @tap="select_2" :style="tag_style_2">售后服务</view>
+						<view class="tag-item cu-tag" @tap="select_3" :style="tag_style_3">交易问题</view>
+						<view class="tag-item cu-tag" @tap="select_4" :style="tag_style_4">其他</view>
 					</view>
 					
 					<view class="suggestion-box">
-						<textarea class="suggestion" placeholder="请输入您的意见反馈详情内容" maxlength=140></textarea>
+						<textarea v-model="suggestionInfo.suggestionText" class="suggestion" placeholder="请输入您的意见反馈详情内容" maxlength=140></textarea>
 					</view>
 					<view class="limit-box">
 						<view class="limit">
-							0/140
+							{{wordCount}}/140
 						</view>
 					</view>
 					
 					<view class="image-box">
-						<uni-file-picker  :imageStyles="imageStyles"></uni-file-picker>
+						<uni-file-picker  :imageStyles="imageStyles" @success="uploadSuccess" ></uni-file-picker>
 					</view>
 				</view>
 				
@@ -39,26 +39,155 @@
 </template>
 
 <script>
+	
+	const db = uniCloud.database();
+	const dbCmd = db.command;
+	
+	
 	export default {
 		data(){
 			return {
+				userInfo: {},
+				
 				imageStyles: {
 					width: 90,
 					height: 90
 				},
+				
+				
+				tag_select_1: false,
+				tag_style_1: '',
+				tag_select_2: false,
+				tag_style_2: '',
+				tag_select_3: false,
+				tag_style_3: '',
+				tag_select_4: false,
+				tag_style_4: '',
+				
+				
+				
+				wordCount: 0,
+				
+				suggestionInfo: {
+					userId: '',
+					suggestionType: '',
+					suggestionText: '',
+					suggestionImages: [],
+				},
+				
 			}
 		},
 		
 		
 		onLoad(){
-			
+			this.init()
 		},
 		
 		onShow(){
 			
 		},
 		
+		watch: {
+			"suggestionInfo.suggestionText":{
+				deep:false,
+				handler(newVal, oldVal){
+					this.wordCount = newVal.length
+				}
+				
+				
+			}
+		},
+		
 		methods:{
+			init() {
+				this.userInfo = uni.getStorageSync('userInfo')
+				console.log('this.userInfo:', this.userInfo);
+				this.suggestionInfo.userId = this.userInfo._id
+			},
+			
+			select_1(){
+				this.suggestionInfo.suggestionType = '内容功能'
+				this.tag_style_1 = "background-color: #30BEB8; color: #FFFFFF;"
+				this.tag_style_2 = ""
+				this.tag_style_3 = ""
+				this.tag_style_4 = ""
+			},
+			
+			select_2(){
+				this.suggestionInfo.suggestionType = '售后服务'
+				this.tag_style_1 = ""
+				this.tag_style_2 = "background-color: #30BEB8; color: #FFFFFF;"
+				this.tag_style_3 = ""
+				this.tag_style_4 = ""
+			},
+			
+			select_3(){
+				this.suggestionInfo.suggestionType = '交易问题'
+				this.tag_style_1 = ""
+				this.tag_style_2 = ""
+				this.tag_style_3 = "background-color: #30BEB8; color: #FFFFFF;"
+				this.tag_style_4 = ""
+			},
+			
+			select_4(){
+				this.suggestionInfo.suggestionType = '其他'
+				this.tag_style_1 = ""
+				this.tag_style_2 = ""
+				this.tag_style_3 = ""
+				this.tag_style_4 = "background-color: #30BEB8; color: #FFFFFF;"
+			},
+			
+			uploadSuccess(e){
+				
+				console.log('uploadSuccess: ', e);
+				e.tempFilePaths.forEach((item, index) => {
+					this.suggestionInfo.suggestionImages.push(item)
+				})
+				
+				
+			},
+			
+			async suggestionSubmit(){
+				console.log('suggestionInfo:', this.suggestionInfo);
+				
+				
+				if(this.suggestionInfo.suggestionType == ''){
+					uni.showToast({
+						title: '请选择类型',
+						icon: 'none'
+					})
+					
+					return
+				}
+				if(this.suggestionInfo.suggestionText == ''){
+					uni.showToast({
+						title: '请填写内容',
+						icon: 'none'
+					})
+					
+					return
+				}
+				
+				let res = await db.collection('member-suggestion').add(this.suggestionInfo)
+				
+				console.log('suggestionSubmit res:', res);
+				
+				if(res.result.code == 0){
+					
+					uni.switchTab({
+						url:'/pages/index/my'
+					})
+					
+					uni.showToast({
+						title: '提交成功',
+						icon: 'none',
+						duration: 2000
+					})
+					
+				}
+				
+				
+			}
 			
 		}
 	}

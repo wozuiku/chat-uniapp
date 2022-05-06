@@ -4,7 +4,7 @@
 			<view class="cu-form-group margin-top">
 				<view class="title">激活码</view>
 				<input placeholder="输入4位激活码" name="input" v-model="activationCode"></input>
-				<button class='cu-btn bg-orange activation-btn' @tap="activation">立即激活</button>
+				<button class='cu-btn bg-orange activation-btn' :loading="activationLoading" @tap="activation">立即激活</button>
 			</view>
 
 			<view class="prompt-text">激活方法</view>
@@ -25,6 +25,7 @@
 				userInfo: {},
 				invitationInfo: {},
 				activationCode: '',
+				activationLoading: false
 			}
 		},
 
@@ -42,6 +43,8 @@
 
 			async activation() {
 				console.log('this.activationCode:', this.activationCode);
+				
+				this.activationLoading = true
 
 				await this.getInvitationInfo(this.activationCode)
 				console.log('activation this.invitationInfo:', this.invitationInfo);
@@ -75,10 +78,12 @@
 						icon: 'none'
 					})
 				}
+				
+				this.activationLoading = false
 			},
 
 			async getInvitationInfo(activationCode) {
-				let res = await db.collection('chat-member-activation')
+				let res = await db.collection('member-activation')
 					.where('invitationCode=="' + activationCode + '" && invitationCodeStatus=="Y"')
 					.get()
 

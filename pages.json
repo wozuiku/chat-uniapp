@@ -46,7 +46,7 @@
 		"pages": [{
 			"path": "article",
 			"style": {
-				//"navigationBarTitleText": "填写邀请码",
+				"navigationBarTitleText": "干货",
 				"enablePullDownRefresh": true
 			}
 		}]

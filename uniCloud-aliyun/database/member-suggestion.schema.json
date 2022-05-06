@@ -1,0 +1,27 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"userId": {
+			"description": "用户id"
+		},
+		"suggestionType": {
+			"description": "类型"
+		},
+		"suggestionText": {
+			"description": "内容"
+		},
+		"suggestionImages": {
+			"description": "图片列表"
+		}
+	}
+}

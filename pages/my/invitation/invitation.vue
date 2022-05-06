@@ -116,7 +116,7 @@
 			},
 			
 			async getInvitationInfo(openId){
-				let res = await db.collection('chat-member-activation')
+				let res = await db.collection('member-activation')
 					.where('openId=="' + openId + '"')
 					.get()
 				this.invitationInfo = res.result.data[0]

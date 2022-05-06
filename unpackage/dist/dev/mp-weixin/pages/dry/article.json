@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "干货",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "u-avatar": "/uni_modules/uview-ui/components/u-avatar/u-avatar",
