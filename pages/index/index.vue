@@ -172,11 +172,12 @@
 		},
 
 		onLoad() {
+			userLogin()
 			this.init()
 		},
 
 		onShow() {
-			userLogin()
+			
 		},
 
 		methods: {
