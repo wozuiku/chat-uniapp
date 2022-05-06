@@ -1,10 +1,9 @@
 <template>
 	<view>
-		<!-- <view class="cu-bar bg-white solid-bottom margin-top">
-			<view class="action">
-				<text class="cuIcon-title text-orange"></text> 我的邀请
-			</view>
-		</view> -->
+		<view class="load-progress" :class="loadProgress!=0?'show':'hide'" :style="[{top:CustomBar+'px'}]">
+			<view class="load-progress-bar bg-green" :style="[{transform: 'translate3d(-' + (100-loadProgress) + '%, 0px, 0px)'}]"></view>
+			<view class="load-progress-spinner text-green"></view>
+		</view>
 		
 		<view class="cu-list menu card-menu margin-top">
 			<view class="cu-item">
@@ -63,8 +62,14 @@
 		
 		data(){
 			return {
+				CustomBar: this.CustomBar,
+				loadProgress: 0,
+				
 				userInfo: {},
-				invitationInfo: {},
+				invitationInfo: {
+					invitationCode: '----',
+					invitationCount: 0
+				},
 				
 				posterData: {
 					poster: {
@@ -110,9 +115,19 @@
 		methods: {
 			
 			async init(){
+				this.loadInvitation()
 				this.userInfo = uni.getStorageSync('userInfo')
 				await this.getInvitationInfo(this.userInfo.openid)
 				console.log('this.invitationInfo:', this.invitationInfo);
+				this.loadInvitation()
+			},
+			
+			loadInvitation(e) {
+				this.loadProgress = this.loadProgress + 50;
+				if (this.loadProgress < 100) {
+				} else {
+					this.loadProgress = 0;
+				}
 			},
 			
 			async getInvitationInfo(openId){

@@ -65,7 +65,7 @@
 	export default {
 		data() {
 			return {
-				loadModal: false,
+				
 				CustomBar: this.CustomBar,
 				loadProgress: 0,
 				articleId: '',
