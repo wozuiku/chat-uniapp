@@ -55,7 +55,7 @@
 				</view>
 				<view class='padding-sm flex flex-wrap bg-white'>
 					<view class="padding-xs" v-for="(item,index) in cate.code" :key="index">
-						<view class='cu-tag line-orange round' style="color: #F889AB;" @click="show_type(item)">
+						<view class='cu-tag line-orange round' style="color: #F889AB;" @click="show_demo(item)">
 							{{item.name}}
 						</view>
 					</view>
@@ -248,10 +248,10 @@
 				});
 			},
 
-			show_type(item) {
+			show_demo(item) {
 				console.log(item);
 				uni.navigateTo({
-					url: '/pages/chat/type/type?code=' + item.code + '&name=' + item.name
+					url: '/pages/chat/demo/demo?code=' + item.code + '&name=' + item.name
 				})
 
 			}

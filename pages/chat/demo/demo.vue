@@ -1,6 +1,6 @@
 <template>
-	<view class="type-wrap">
-		<view class="type-title">
+	<view class="demo-wrap">
+		<view class="demo-title">
 			<view class="cu-bar bg-white solid-bottom margin-top">
 				<view class="action">
 					<text class="cuIcon-title text-orange "></text> {{type}}
@@ -8,9 +8,9 @@
 			</view>
 		</view>
 
-		<view class="type-items">
+		<view class="demo-items">
 			<view v-for="(item, index) in resultList" :key="index">
-				<view class="type-item">
+				<view class="demo-item">
 					<view class="item-line" v-for="(item1, index1) in item.demo_code" :key="index1">
 						<view class="line-image">
 							<image class="user-icon-m" v-if="item1.gender == 'M'" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-b7a774b3-4b44-4ebe-b2a7-716565dfc8e9/4088136a-74da-4a61-abf2-0ef7b2eabb80.png">
@@ -85,20 +85,20 @@
 </script>
 
 <style lang="scss" scoped>
-	.type-wrap {
+	.demo-wrap {
 		display: flex;
 		flex-direction: column;
 
-		.type-title {}
+		.demo-title {}
 
-		.type-items {
+		.demo-items {
 			display: flex;
 			flex-direction: column;
 			padding-left: 22rpx;
 			padding-right: 22rpx;
 			//background-color: #007AFF;
 
-			.type-item {
+			.demo-item {
 				display: flex;
 				flex-direction: column;
 				margin-top: 22rpx;

@@ -53,7 +53,7 @@
 	}, {
 		"root": "pages/chat",
 		"pages": [{
-			"path": "type/type",
+			"path": "demo/demo",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false

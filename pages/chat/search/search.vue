@@ -1,5 +1,11 @@
 <template>
 	<view class="search-wrap">
+		<view class="cu-load load-modal" v-if="loadModal">
+			<!-- <view class="cuIcon-emojifill text-orange"></view> -->
+			<!-- <image src="/static/logo.png" mode="aspectFit"></image> -->
+			<view class="gray-text">加载中...</view>
+		</view>
+		
 		<view class="search-box">
 			<view class="search-input-box">
 				<u-icon name="search" color="#909399" :size="28"></u-icon>
@@ -54,7 +60,7 @@
 
 			</view>
 		</view>
-		
+
 		<view class="share-box">
 			<button class="cu-btn block bg-orange lg share-btn" open-type="share">
 				<text class="cuIcon-share"></text>分享给朋友</button>
@@ -68,13 +74,16 @@
 		data() {
 			return {
 				keyword: '',
-				resultList: []
+				resultList: [],
+				loadModal: false
 			}
 		},
 
 		methods: {
 			search() {
 				console.log('search keyword:', this.keyword);
+				this.loadModal = true
+				
 				const db = uniCloud.database()
 				db.collection('chat-message-item')
 					.where(`${new RegExp(this.keyword, 'i')}.test(girl_message)`)
@@ -86,6 +95,8 @@
 					}).catch(err => {
 						console.error(err)
 					})
+
+				this.loadModal = false
 			},
 
 			clickTag(tag) {
@@ -113,7 +124,7 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		
+
 		.search-box {
 			display: flex;
 			justify-content: center;
@@ -122,6 +133,7 @@
 			padding-left: 32rpx;
 			padding-right: 32rpx;
 			background-color: #FFF;
+
 			.search-input-box {
 				background-color: #f2f2f2;
 				border-radius: 100rpx;
@@ -130,6 +142,7 @@
 				padding: 10rpx 16rpx;
 				width: 80%;
 				height: 60rpx;
+
 				.search-text {
 					width: 100%;
 					font-size: 26rpx;
@@ -143,6 +156,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+
 				.search-btn {
 					width: 120rpx;
 					line-height: 60rpx;
@@ -177,30 +191,31 @@
 				align-items: center;
 			}
 		}
-		
-		.result-box{
-			.result-items{
+
+		.result-box {
+			.result-items {
 				display: flex;
 				flex-direction: column;
 				padding-left: 32rpx;
 				padding-right: 32rpx;
 				//background-color: #007AFF;
-				
-				.result-item{
+
+				.result-item {
 					padding: 12rpx;
 					background-color: #FFF;
 					border-radius: 22rpx;
 					margin-top: 32rpx;
 				}
 			}
-			
+
 		}
-		
+
 		.share-box {
 			display: flex;
 			justify-content: center;
 			margin: 32rpx;
-			.share-btn{
+
+			.share-btn {
 				width: 240rpx;
 				height: 68rpx;
 				font-size: 26rpx;

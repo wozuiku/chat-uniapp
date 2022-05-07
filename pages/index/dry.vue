@@ -1,5 +1,10 @@
 <template>
 	<view>
+		<view class="load-progress" :class="loadProgress!=0?'show':'hide'" :style="[{top:CustomBar+'px'}]">
+			<view class="load-progress-bar bg-green" :style="[{transform: 'translate3d(-' + (100-loadProgress) + '%, 0px, 0px)'}]"></view>
+			<view class="load-progress-spinner text-green"></view>
+		</view>
+		
 		<scroll-view :scroll-y="true" class="page">
 			<view v-for="(typeItem, typeIndex) in typeList">
 				<view class="cu-bar bg-white solid-bottom margin-top">
@@ -25,9 +30,10 @@
 	export default {
 		data() {
 			return {
+				CustomBar: this.CustomBar,
+				loadProgress: 0,
 
 				typeList: [],
-
 			}
 		},
 
@@ -37,6 +43,7 @@
 
 		methods: {
 			init() {
+				this.loadDry()
 				// 客户端联表查询
 				const db = uniCloud.database()
 				const type = db.collection('dry-type').field('code, name').getTemp() 
@@ -50,15 +57,15 @@
 				    console.error(err)
 				  })
 				
-				// db.collection('dry-type')
-				// 	.field('code, name, order')
-				// 	.get()
-				// 	.then(res => {
-				// 		this.typeList = res.result.data
-				// 		console.log(this.typeList)
-				// 	}).catch(err => {
-				// 		console.error(err)
-				// 	})
+				this.loadDry()
+			},
+			
+			loadDry(e) {
+				this.loadProgress = this.loadProgress + 50;
+				if (this.loadProgress < 100) {
+				} else {
+					this.loadProgress = 0;
+				}
 			},
 			
 			jump(articleId){

@@ -31,7 +31,7 @@
 				</view>
 				
 				<view class="suggestion-submit-btn-box">
-					<button class="cu-btn bg-orange lg suggestion-submit-btn " @tap="suggestionSubmit">提交</button>
+					<button class="cu-btn bg-orange lg suggestion-submit-btn" :loading="submitLoading" @tap="suggestionSubmit">提交</button>
 				</view>
 			</view>
 		</scroll-view>
@@ -74,6 +74,8 @@
 					suggestionText: '',
 					suggestionImages: [],
 				},
+				
+				submitLoading: false
 				
 			}
 		},
@@ -150,6 +152,8 @@
 			async suggestionSubmit(){
 				console.log('suggestionInfo:', this.suggestionInfo);
 				
+				this.submitLoading = true
+				
 				
 				if(this.suggestionInfo.suggestionType == ''){
 					uni.showToast({
@@ -173,6 +177,8 @@
 				console.log('suggestionSubmit res:', res);
 				
 				if(res.result.code == 0){
+					
+					this.submitLoading = false
 					
 					uni.switchTab({
 						url:'/pages/index/my'

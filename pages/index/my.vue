@@ -68,7 +68,7 @@
 						<text class="text-grey">投诉建议</text>
 					</view>
 				</view>
-				<view class="cu-item arrow">
+				<!-- <view class="cu-item arrow">
 					<view class="content">
 						<text class="cuIcon-text text-grey"></text>
 						<text class="text-grey">使用协议</text>
@@ -79,7 +79,7 @@
 						<text class="cuIcon-safe text-grey"></text>
 						<text class="text-grey">隐私政策</text>
 					</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -116,9 +116,7 @@
 
 		methods: {
 			init() {
-
 				this.userInfo = uni.getStorageSync('userInfo')
-				
 				console.log('this.userInfo:', this.userInfo);
 
 				//今天
@@ -127,7 +125,6 @@
 				let nextMonthDate = this.$formatter.addMonth(currentData, 1)
 				this.validDate = this.$formatter.timeFormat(nextMonthDate, 'yyyy-mm-dd')
 				console.log('validDate:', this.validDate);
-
 			},
 			
 			async getValidDate() {
@@ -139,7 +136,6 @@
 			},
 
 			async getWechatNumber() {
-				
 				let res = await db.collection('chat-config')
 					.where('config_type=="weixin" && item_code=="' + APP_OWNER + '" && enable=="Y"')
 					.get()
@@ -194,7 +190,7 @@
 				padding-left: 80rpx;
 				display: flex;
 				align-items: center;
-
+				
 				.user-image {}
 			}
 

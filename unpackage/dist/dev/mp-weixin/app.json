@@ -15,7 +15,7 @@
     {
       "root": "pages/chat",
       "pages": [
-        "type/type",
+        "demo/demo",
         "search/search"
       ]
     },
@@ -68,6 +68,5 @@
     }
   },
   "lazyCodeLoading": "requiredComponents",
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }
